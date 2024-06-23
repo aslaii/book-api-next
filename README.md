@@ -21,8 +21,8 @@ Welcome to the Book Management System! This project is built using Next.js and N
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/your-username/book-management-system.git
-   cd book-management-system
+   git clone https://github.com/your-username/book-api-next.git
+   cd book-api-next
    ```
 
 2. **Install dependencies**:
