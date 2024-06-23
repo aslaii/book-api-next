@@ -36,7 +36,7 @@ Welcome to the Book Management System! This project is built using Next.js and N
    NEXT_PUBLIC_NODE_API_URL=http://localhost:3001
    ```
 
-4. **Start the Node.js server**:
+4. **Start the Node.js server (refer to the aslaii/book-api-node repository)**:
    ```bash
    node server.js
    ```
