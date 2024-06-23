@@ -1,40 +1,232 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 📚 Book Management System with Next.js
 
-## Getting Started
+Welcome to the Book Management System! This project is built using Next.js and Node.js to provide a seamless experience for managing a list of books. The system supports CRUD operations and includes an intuitive UI with modals for editing and deleting books.
 
-First, run the development server:
+## 🚀 Features
 
+- **Home Page**: View all books in a beautiful data grid.
+- **Add Book**: Add new books to the collection.
+- **Edit Books**: Edit existing books with ease.
+- **Delete Books**: Delete books with confirmation modals.
+- **API Documentation**: Access API documentation through Swagger.
+
+## 🛠️ Setup Instructions
+
+### Prerequisites
+
+- Node.js (v14 or higher)
+- npm (v6 or higher)
+
+### Installation
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/your-username/book-management-system.git
+   cd book-management-system
+   ```
+
+2. **Install dependencies**:
+   ```bash
+   npm install
+   ```
+
+3. **Set up environment variables**:
+   Create a `.env.local` file in the root of your project and add the following line:
+   ```
+   NEXT_PUBLIC_NODE_API_URL=http://localhost:3001
+   ```
+
+4. **Start the Node.js server**:
+   ```bash
+   node server.js
+   ```
+
+5. **Start the Next.js development server**:
+   ```bash
+   npm run dev
+   ```
+
+### Accessing the Application
+
+- **Next.js App**: The application will be running at `http://localhost:3000`.
+- **API Documentation**: Access Swagger documentation at `http://localhost:3001/api-docs`.
+
+## 🌐 Pages
+
+### Home Page
+
+- **Path**: `/`
+- **Description**: Displays all books in a data grid. Click on "Edit" to open the edit modal and "Delete" to open the delete confirmation modal.
+
+### Add Book
+
+- **Path**: `/add`
+- **Description**: Provides a form to add a new book to the collection.
+
+### Edit Books
+
+- **Path**: `/edit`
+- **Description**: Displays all books in a data grid with options to edit or delete each book.
+
+## 🧩 Components
+
+### NavBar
+
+- A navigation bar at the top to visit all three pages.
+
+### BookModal
+
+- A modal to view book details.
+
+### BookEditModal
+
+- A modal to edit book details.
+
+### ConfirmDeleteModal
+
+- A modal to confirm the deletion of a book.
+
+### BookForm
+
+- A form component used for adding and editing books.
+
+## 📋 API Endpoint Documentation
+
+### Create a Book
+
+- **Endpoint**: `POST /api/books`
+- **Request Body**: JSON object containing `title`, `author`, `publishedDate`, and `summary`.
+- **Response**: The created book object with a unique ID.
+
+### Retrieve All Books
+
+- **Endpoint**: `GET /api/books`
+- **Response**: An array of all book objects.
+
+### Retrieve a Single Book
+
+- **Endpoint**: `GET /api/books/[id]`
+- **Response**: The book object with the specified ID.
+
+### Update a Book
+
+- **Endpoint**: `PUT /api/books/[id]`
+- **Request Body**: JSON object containing `title`, `author`, `publishedDate`, and `summary`.
+- **Response**: The updated book object.
+
+### Delete a Book
+
+- **Endpoint**: `DELETE /api/books/[id]`
+- **Response**: The deleted book object.
+
+## 🎨 Example Requests and Responses
+
+### Create a Book Example
+
+**Request**:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+curl -X POST http://localhost:3000/api/books -H "Content-Type: application/json" -d '{
+  "title": "The Catcher in the Rye",
+  "author": "J.D. Salinger",
+  "publishedDate": "1951-07-16",
+  "summary": "A story about the events in the life of a young man"
+}'
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**Response**:
+```json
+{
+  "id": "1",
+  "title": "The Catcher in the Rye",
+  "author": "J.D. Salinger",
+  "publishedDate": "1951-07-16",
+  "summary": "A story about the events in the life of a young man"
+}
+```
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+### Retrieve All Books Example
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+**Request**:
+```bash
+curl -X GET http://localhost:3000/api/books
+```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+**Response**:
+```json
+[
+  {
+    "id": "1",
+    "title": "The Catcher in the Rye",
+    "author": "J.D. Salinger",
+    "publishedDate": "1951-07-16",
+    "summary": "A story about the events in the life of a young man"
+  }
+]
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Retrieve a Single Book Example
 
-## Learn More
+**Request**:
+```bash
+curl -X GET http://localhost:3000/api/books/1
+```
 
-To learn more about Next.js, take a look at the following resources:
+**Response**:
+```json
+{
+  "id": "1",
+  "title": "The Catcher in the Rye",
+  "author": "J.D. Salinger",
+  "publishedDate": "1951-07-16",
+  "summary": "A story about the events in the life of a young man"
+}
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Update a Book Example
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+**Request**:
+```bash
+curl -X PUT http://localhost:3000/api/books/1 -H "Content-Type: application/json" -d '{
+  "title": "The Catcher in the Rye (Updated)",
+  "author": "J.D. Salinger",
+  "publishedDate": "1951-07-16",
+  "summary": "An updated summary"
+}'
+```
 
-## Deploy on Vercel
+**Response**:
+```json
+{
+  "id": "1",
+  "title": "The Catcher in the Rye (Updated)",
+  "author": "J.D. Salinger",
+  "publishedDate": "1951-07-16",
+  "summary": "An updated summary"
+}
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Delete a Book Example
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+**Request**:
+```bash
+curl -X DELETE http://localhost:3000/api/books/1
+```
+
+**Response**:
+```json
+{
+  "id": "1",
+  "title": "The Catcher in the Rye",
+  "author": "J.D. Salinger",
+  "publishedDate": "1951-07-16",
+  "summary": "A story about the events in the life of a young man"
+}
+```
+
+## 📝 License
+
+This project is licensed under the MIT License.
+
+---
+
+Happy coding! 🚀
